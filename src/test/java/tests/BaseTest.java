@@ -1,33 +1,34 @@
 package tests;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import static utils.DriverProvider.closeDriver;
+import static utils.DriverProvider.getCurrentDriver;
+import static utils.WaitUtils.waitElementToBeClickable;
+
 
 public class BaseTest {
-    public WebDriver driver;
+    String acceptCookiesButtonXpath = "//button[@class='c-btn--primary h-btn--small cookies_accept-all']";
 
     @BeforeMethod
     public  void setUp(){
-        WebDriverManager.firefoxdriver().setup();
-        driver = new FirefoxDriver();
-        driver.get("https://kaup24.ee/");
+        getCurrentDriver().get("https://kaup24.ee/");
         acceptCookies();
     }
 
     @AfterMethod
     public void tearDown(){
-        driver.quit();
+        closeDriver();
     }
 
     public void acceptCookies(){
-        WebElement acceptCookiesButton = driver.
-                findElement(By.xpath("//button[@class='c-btn--primary h-btn--small cookies_accept-all']"));
+        waitElementToBeClickable(By.xpath(acceptCookiesButtonXpath));
+
+        WebElement acceptCookiesButton = getCurrentDriver().
+                findElement(By.xpath(acceptCookiesButtonXpath));
         acceptCookiesButton.click();
     }
 }

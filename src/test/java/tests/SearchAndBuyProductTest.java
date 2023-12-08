@@ -1,39 +1,39 @@
 package tests;
 
-
-import org.testng.Assert;
+import models.Product;
+import org.openqa.selenium.By;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.*;
 
-
+import static utils.AssertionUtils.*;
 
 public class SearchAndBuyProductTest extends BaseTest{
 
     @Test
     @Parameters({"searchText"})
-    public void searchAndBuyProductTest(String searchText){
-        SearchPage searchPage = new SearchPage(driver);
-        ProductsListPage productsListPage = new ProductsListPage(driver);
-        InfoProductPage infoProductPage = new InfoProductPage(driver);
+    public static void searchAndBuyProductTest(String searchText){
+        SearchPage searchPage = new SearchPage();
+        ProductsListPage productsListPage = new ProductsListPage();
+        InfoProductPage infoProductPage = new InfoProductPage();
         InfoWindowAfterAddingItemToCartPage infoWindowAfterAddingItemToCartPage =
-                new InfoWindowAfterAddingItemToCartPage(driver);
-        CartPage cartPage = new CartPage(driver);
+                new InfoWindowAfterAddingItemToCartPage();
+        CartPage cartPage = new CartPage();
 
         searchPage.search(searchText);
 
-        productsListPage.choseFirstProduct();
+        productsListPage.chooseFirstProduct();
 
-        Assert.assertTrue(infoProductPage.getNameProduct().toLowerCase().contains(searchText.toLowerCase()));
+        Product choseProduct = infoProductPage.CurrentProduct();
 
-        double priceProduct = infoProductPage.getPriceProduct();
+        assertContains(choseProduct.getName(), searchText);
 
         infoProductPage.addCart();
 
         infoWindowAfterAddingItemToCartPage.buy();
 
-        Assert.assertEquals(priceProduct, cartPage.totalCost());
+        assertEquals(choseProduct.getPrice(), cartPage.totalCost());
 
-        Assert.assertTrue(cartPage.isClickableButtonNext());
+        assertClickable(By.xpath(cartPage.getNextButtonXpath()));
     }
 }

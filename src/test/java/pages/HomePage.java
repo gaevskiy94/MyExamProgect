@@ -1,11 +1,16 @@
 package pages;
 
-import org.openqa.selenium.WebDriver;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import static utils.DriverProvider.getCurrentDriver;
 public class HomePage {
-    WebDriver driver;
+    String catalogLinkId = "menuBurger";
 
-    public HomePage(WebDriver driver){
-        this.driver = driver;
+    public void openCatalog(){
+        WebElement catalogLink = getCurrentDriver().findElement(By.id(catalogLinkId));
+        catalogLink.click();
     }
+
 }
