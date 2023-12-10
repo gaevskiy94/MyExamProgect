@@ -23,8 +23,8 @@ public class AssertionUtils {
 
     public static void assertClickable(By locator){
         try {
-            WebElement nextButton = getCurrentDriver().findElement(locator);
-            nextButton.click();
+            WebElement button = getCurrentDriver().findElement(locator);
+            button.click();
             Assert.assertTrue(true);
         }catch (Exception e){
             Assert.assertTrue(false);
@@ -45,5 +45,13 @@ public class AssertionUtils {
         }
 
         Assert.assertTrue(isPriceRange);
+    }
+
+    public static void assertTrue(boolean is){
+        Assert.assertTrue(is);
+    }
+
+    public static void assertFalse(boolean is){
+        Assert.assertFalse(is);
     }
 }
