@@ -16,29 +16,23 @@ public class ProductAddInFavoritesListAndDeleteFromListTest extends BaseTest {
     public void threeProductsAddInFavoritesListAndDeleteFromListTest(){
         User user = new User("gaevskiy.alexandr3@gmail.com", "12345qwerTY!");
         SearchText searchText = new SearchText("samsung galaxy s23");
-        HeaderPage headerPage = new HeaderPage();
-        UserProfileMenuPage userProfileMenuPage = new UserProfileMenuPage();
+        HomePage homePage = new HomePage();
         AuthorizationPage authorizationPage = new AuthorizationPage();
-        SearchPage searchPage = new SearchPage();
         ProductsListPage productsListPage = new ProductsListPage();
         FavoritesPage favoritesPage = new FavoritesPage();
 
-        headerPage.openUserProfileDDMenu();
-
-        userProfileMenuPage.openLoginPage();
+        homePage.authorizationPage();
 
         authorizationPage.login(user.getEmail(), user.getPassword());
 
-        headerPage.openUserProfileDDMenu();
+        assertIsDisplay(By.xpath(homePage.getLogoutButtonXpath()));
 
-        assertIsDisplay(By.xpath(userProfileMenuPage.getLogoutButtonXpath()));
-
-        searchPage.search(searchText.getText());
+        homePage.search(searchText.getText());
 
         List<Product> threeProductsAddedInFavoritesList = productsListPage
                 .threeFirstProductsAddInFavoriteAndGetListTheseProducts();
 
-        headerPage.openFavoritesList();
+        productsListPage.openFavoritesList();
 
         List<Product> productListFromFavorites = favoritesPage.getProductsList();
 

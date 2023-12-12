@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 
 import static utils.DriverProvider.getCurrentDriver;
 
-public class CatalogPage {
+public class CatalogPage extends BasePage{
     String categoryKodumasinadKodutehnikaLinkXpath =
             "//div[@class='c-categories-list__title']//*[contains(text(), 'Kodumasinad, kodutehnika')]";
     String categoryTeleridJaTarvikudLinkXpath =

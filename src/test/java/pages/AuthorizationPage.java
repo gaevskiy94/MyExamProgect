@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 
 import static utils.DriverProvider.getCurrentDriver;
 
-public class AuthorizationPage {
+public class AuthorizationPage extends BasePage{
     String emailFieldXpath = "//div[@widget-attachpoint='viewLogin']//input[@placeholder='E-post']";
     String passwordFieldXpath = "//div[@widget-attachpoint='viewLogin']//input[@placeholder='Parool']";
     String loginButtonXpath = "//div[@widget-attachpoint='viewLogin']//input[@class='btn btn-primary btn-full-width']";

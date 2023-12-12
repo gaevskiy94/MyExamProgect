@@ -3,25 +3,23 @@ package tests;
 import models.Product;
 import models.SearchText;
 import org.openqa.selenium.By;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.*;
 
 import static utils.AssertionUtils.*;
 
 public class SearchAndBuyProductTest extends BaseTest{
-
     @Test
     public static void searchAndBuyProductTest(){
         SearchText searchText = new SearchText("iphone 14");
-        SearchPage searchPage = new SearchPage();
+        HomePage homePage = new HomePage();
         ProductsListPage productsListPage = new ProductsListPage();
         InfoProductPage infoProductPage = new InfoProductPage();
-        InfoWindowAfterAddingItemToCartPage infoWindowAfterAddingItemToCartPage =
-                new InfoWindowAfterAddingItemToCartPage();
+        InfoWindowAfterAddingProductToCartPage infoWindowAfterAddingProductToCartPage =
+                new InfoWindowAfterAddingProductToCartPage();
         CartPage cartPage = new CartPage();
 
-        searchPage.search(searchText.getText());
+        homePage.search(searchText.getText());
 
         productsListPage.chooseFirstProduct();
 
@@ -31,7 +29,7 @@ public class SearchAndBuyProductTest extends BaseTest{
 
         infoProductPage.addCart();
 
-        infoWindowAfterAddingItemToCartPage.buy();
+        infoWindowAfterAddingProductToCartPage.buy();
 
         assertEquals(choseProduct.getPrice(), cartPage.totalCost());
 

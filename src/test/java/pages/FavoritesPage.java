@@ -10,7 +10,7 @@ import java.util.List;
 import static utils.DriverProvider.getCurrentDriver;
 import static utils.WaitUtils.waitVisibilityOfElementLocated;
 
-public class FavoritesPage {
+public class FavoritesPage extends BasePage{
     String nameProductsListXpath = "//p[@class='product-name']";
     String priceProductsListXpath ="//div[@class='product-price']";
     String deleteFavoritesButtonListXpath = "//button[@class='add-to-favorites']";
@@ -26,7 +26,7 @@ public class FavoritesPage {
 
         for (int i=0; i<nameProductsList.size(); i++){
             productsList.add(new Product(nameProductsList.get(i).getText(),
-                    ProductsListPage.getPriceDouble(priceList.get(i))));
+                    getPriceDouble(priceList.get(i))));
         }
 
         return productsList;

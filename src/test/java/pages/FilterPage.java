@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import static utils.DriverProvider.getCurrentDriver;
 import static utils.WaitUtils.waitElementToBeClickable;
 
-public class FilterPage {
+public class FilterPage extends BasePage{
     String minPriceFieldXpath = "//input[@class='price-from']";
     String maxPriceFieldXpath = "//input[@class='price-to']";
     String sliderMaxPriceXpath = "//div[@class='noUi-handle noUi-handle-upper']";

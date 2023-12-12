@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import static utils.DriverProvider.getCurrentDriver;
 import static utils.WaitUtils.waitElementToBeClickable;
 
-public class InfoWindowAfterAddingItemToCartPage {
+public class InfoWindowAfterAddingProductToCartPage {
     String buyButtonId = "buy";
 
     public void buy(){

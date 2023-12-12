@@ -22,13 +22,15 @@ public class AssertionUtils {
     }
 
     public static void assertClickable(By locator){
-        try {
-            WebElement button = getCurrentDriver().findElement(locator);
-            button.click();
-            Assert.assertTrue(true);
-        }catch (Exception e){
-            Assert.assertTrue(false);
+        boolean isClickable = false;
+
+        WebElement button = getCurrentDriver().findElement(locator);
+        if (button.getTagName().equalsIgnoreCase("button") && button.isDisplayed() && button.isEnabled()){
+            isClickable = true;
         }
+
+        Assert.assertTrue(isClickable);
+
     }
 
     public static void assertPriceRange(String minPrice, String maxPrice, List<Product> productList){

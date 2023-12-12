@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 import static utils.DriverProvider.getCurrentDriver;
 
-public class ProductsListPage {
+public class ProductsListPage extends BasePage{
     String imagesProductsListXpath = "//a[@class='product-image-container']";
     String nameProductsListXpath = "//div[@class='blur']//p[@class='product-name']";
     String priceProductsListXpath ="//div[@class='blur']//div[@class='product-price h-use-ui-lib']";
@@ -53,28 +53,5 @@ public class ProductsListPage {
         }catch (Exception e){}
 
         return productsList;
-    }
-
-    public static double getPriceDouble(WebElement element){
-            String priceStr = element.getText().replaceAll(" ", "");
-
-            if (priceStr.contains("kuus") && priceStr.contains("SJH")) {
-                priceStr = priceStr.substring(priceStr.indexOf("\n")+1);
-                priceStr = priceStr.substring(0, priceStr.indexOf("\u20AC"));
-                priceStr = priceStr.replaceAll("\n", "");
-
-            }else if (priceStr.contains("kuus")) {
-                priceStr = priceStr.substring(priceStr.indexOf("\n")+1);
-                priceStr = priceStr.substring(0, priceStr.indexOf("\u20AC"));
-                priceStr = priceStr.replaceAll("\n", "");
-            }else {
-                priceStr = priceStr.substring(0, priceStr.indexOf("\u20AC"));
-                priceStr = priceStr.replaceAll("\n", "");
-            }
-
-            StringBuilder sb = new StringBuilder(priceStr);
-
-            return Double.parseDouble(sb.insert(sb.length() - 2, ".").toString());
-
     }
 }

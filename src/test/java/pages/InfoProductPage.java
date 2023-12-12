@@ -4,14 +4,12 @@ import models.Product;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import static pages.ProductsListPage.getPriceDouble;
 import static utils.DriverProvider.getCurrentDriver;
 import static utils.WaitUtils.waitVisibilityOfElementLocated;
 
-public class InfoProductPage {
+public class InfoProductPage extends BasePage{
     String nameProductXpath = "//h1[@class='c-product__name']";
-    String priceProductXpath = "//div[@class='c-product__price']";//'c-price h-price--xx-large h-price']";
-    String discountedPriceProductXpath = "//div[@class='c-price h-price--xx-large h-price--new']";
+    String priceProductXpath = "//div[@class='c-product__price']";
     String addCartButtonXpath = "//div[@class='c-btn--primary h-btn-intent--atc']";
 
     public String getNameProduct(){
