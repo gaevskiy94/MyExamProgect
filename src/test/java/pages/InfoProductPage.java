@@ -4,12 +4,13 @@ import models.Product;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import static pages.ProductsListPage.getPriceDouble;
 import static utils.DriverProvider.getCurrentDriver;
 import static utils.WaitUtils.waitVisibilityOfElementLocated;
 
 public class InfoProductPage {
     String nameProductXpath = "//h1[@class='c-product__name']";
-    String priceProductXpath = "//div[@class='c-price h-price--xx-large h-price']";
+    String priceProductXpath = "//div[@class='c-product__price']";//'c-price h-price--xx-large h-price']";
     String discountedPriceProductXpath = "//div[@class='c-price h-price--xx-large h-price--new']";
     String addCartButtonXpath = "//div[@class='c-btn--primary h-btn-intent--atc']";
 
@@ -23,23 +24,11 @@ public class InfoProductPage {
     public double getPriceProduct(){
         waitVisibilityOfElementLocated(By.xpath(priceProductXpath));
 
-        try {
-            WebElement priceProductText = getCurrentDriver().findElement(By.xpath(priceProductXpath));
-
-            return Double.parseDouble(priceProductText.
-                    getText().replaceAll("\n", ".").replace(" ", "").
-                    substring(0, priceProductText.getText().length() - 3));
-
-        }catch(Exception e){
-            WebElement discountedPriceProduct = getCurrentDriver().findElement(By.xpath(discountedPriceProductXpath));
-
-            return Double.parseDouble(discountedPriceProduct.
-                    getText().replaceAll("\n", ".").replace(" ", "").
-                    substring(0, discountedPriceProduct.getText().length() - 3));
-        }
+        WebElement priceProductText = getCurrentDriver().findElement(By.xpath(priceProductXpath));
+        return getPriceDouble(priceProductText);
     }
 
-    public Product CurrentProduct(){
+    public Product getCurrentProduct(){
         return new Product(getNameProduct(),getPriceProduct());
     }
     public void addCart(){

@@ -1,5 +1,6 @@
 package tests;
 
+import models.RangePrice;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.CatalogPage;
@@ -13,8 +14,8 @@ import static utils.AssertionUtils.assertPriceRange;
 public class FilterPriceRangeTest extends BaseTest {
 
     @Test
-    @Parameters({"minPrice", "maxPrice"})
-    public void priceRangeTest(String minPrice, String maxPrice) {
+    public void priceRangeTest() {
+        RangePrice rangePrice = new RangePrice("800", "1000");
         HeaderPage headerPage = new HeaderPage();
         CatalogPage catalogPage = new CatalogPage();
         FilterPage filterPage = new FilterPage();
@@ -24,9 +25,9 @@ public class FilterPriceRangeTest extends BaseTest {
 
         catalogPage.openCategoryTelerid();
 
-        filterPage.setPriceRange(minPrice, maxPrice);
+        filterPage.setPriceRange(rangePrice.getMinPrice(), rangePrice.getMaxPrice());
 
-        assertPriceRange(minPrice,maxPrice, productsListPage.getPriceProductsList());
+        assertPriceRange(rangePrice.getMinPrice(), rangePrice.getMaxPrice(), productsListPage.getPriceProductsList());
 
     }
 }

@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import static pages.ProductsListPage.getPriceDouble;
 import static utils.DriverProvider.getCurrentDriver;
 
 public class CartPage {
@@ -11,9 +12,7 @@ public class CartPage {
 
     public double totalCost(){
         WebElement totalCostText = getCurrentDriver().findElement(By.xpath(totalCostTextXpath));
-        return Double.parseDouble(totalCostText.
-                getText().replaceAll("\n",".").replace(" ", "").
-                substring(0, totalCostText.getText().length()-3));
+        return getPriceDouble(totalCostText);
     }
 
     public String getNextButtonXpath() {

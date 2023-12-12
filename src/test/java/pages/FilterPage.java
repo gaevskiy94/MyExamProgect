@@ -24,6 +24,8 @@ public class FilterPage {
         maxPriceField.sendKeys(maxPrice);
         maxPriceField.sendKeys(Keys.ENTER);
 
+        waitElementToBeClickable(By.xpath(cleanFilterButtonXpath));
+
         WebElement sliderMaxPrice = getCurrentDriver().findElement(By.xpath(sliderMaxPriceXpath));
         sliderMaxPrice.click();
 

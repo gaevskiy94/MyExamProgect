@@ -1,6 +1,7 @@
 package tests;
 
 import models.Product;
+import models.SearchText;
 import org.openqa.selenium.By;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -11,8 +12,8 @@ import static utils.AssertionUtils.*;
 public class SearchAndBuyProductTest extends BaseTest{
 
     @Test
-    @Parameters({"searchText"})
-    public static void searchAndBuyProductTest(String searchText){
+    public static void searchAndBuyProductTest(){
+        SearchText searchText = new SearchText("iphone 14");
         SearchPage searchPage = new SearchPage();
         ProductsListPage productsListPage = new ProductsListPage();
         InfoProductPage infoProductPage = new InfoProductPage();
@@ -20,13 +21,13 @@ public class SearchAndBuyProductTest extends BaseTest{
                 new InfoWindowAfterAddingItemToCartPage();
         CartPage cartPage = new CartPage();
 
-        searchPage.search(searchText);
+        searchPage.search(searchText.getText());
 
         productsListPage.chooseFirstProduct();
 
-        Product choseProduct = infoProductPage.CurrentProduct();
+        Product choseProduct = infoProductPage.getCurrentProduct();
 
-        assertContains(choseProduct.getName(), searchText);
+        assertContains(choseProduct.getName(), searchText.getText());
 
         infoProductPage.addCart();
 

@@ -19,12 +19,7 @@ public class UserProfileMenuPage {
         logoutButton.click();
     }
 
-    public boolean isDisplayLogoutButton(){
-        try {
-            WebElement logoutButton = getCurrentDriver().findElement(By.xpath(logoutButtonXpath));
-            return logoutButton.isDisplayed();
-        }catch (Exception e){
-            return false;
-        }
+    public String getLogoutButtonXpath() {
+        return logoutButtonXpath;
     }
 }

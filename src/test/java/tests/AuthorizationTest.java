@@ -1,13 +1,13 @@
 package tests;
 
 import models.User;
+import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.AuthorizationPage;
 import pages.HeaderPage;
 import pages.UserProfileMenuPage;
 
-import static utils.AssertionUtils.assertFalse;
-import static utils.AssertionUtils.assertTrue;
+import static utils.AssertionUtils.*;
 
 public class AuthorizationTest extends BaseTest{
     @Test
@@ -25,13 +25,13 @@ public class AuthorizationTest extends BaseTest{
 
         headerPage.openUserProfileDDMenu();
 
-        assertTrue(userProfileMenuPage.isDisplayLogoutButton());
+        assertIsDisplay(By.xpath(userProfileMenuPage.getLogoutButtonXpath()));
 
         userProfileMenuPage.logout();
 
         headerPage.openUserProfileDDMenu();
 
-        assertFalse(userProfileMenuPage.isDisplayLogoutButton());
+        assertIsNotDisplay(By.xpath(userProfileMenuPage.getLogoutButtonXpath()));
 
     }
 }

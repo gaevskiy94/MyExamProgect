@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All tests">
+    <test name="Test">
+        <packages>
+            <package name="tests"/>
+        </packages>
+    </test>
+    <listeners>
+        <listener class-name="org.testng.reporters.TestHTMLReporter"/>
+    </listeners>
+</suite>

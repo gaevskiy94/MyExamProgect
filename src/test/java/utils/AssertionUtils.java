@@ -46,12 +46,50 @@ public class AssertionUtils {
 
         Assert.assertTrue(isPriceRange);
     }
-
-    public static void assertTrue(boolean is){
-        Assert.assertTrue(is);
+    public static void assertIsDisplay(By locator){
+        try {
+            WebElement element = getCurrentDriver().findElement(locator);
+            Assert.assertTrue(element.isDisplayed());
+        }catch (Exception e){
+            Assert.assertTrue( false );
+        }
     }
 
-    public static void assertFalse(boolean is){
-        Assert.assertFalse(is);
+    public static void assertIsNotDisplay(By locator){
+        try {
+            WebElement element = getCurrentDriver().findElement(locator);
+            Assert.assertFalse(element.isDisplayed());
+        }catch (Exception e){
+            Assert.assertFalse( false );
+        }
+    }
+
+    public static void assertEqualsProductsLists(List<Product> firstList, List<Product> secondList){
+        boolean isEqualsLists = false;
+
+        if (firstList.size() != 0 && secondList.size() != 0) {
+            isEqualsLists = true;
+            for (int i = 0; i < firstList.size(); i++) {
+                for (int j = 0; j < secondList.size(); j++) {
+                    if (firstList.get(i).getName().contains(secondList.get(j).getName())
+                            && firstList.get(i).getPrice() == secondList.get(j).getPrice()) {
+                        break;
+                    } else if (j + 1 == secondList.size()) {
+                        isEqualsLists = false;
+                    }
+                }
+            }
+        }
+        Assert.assertTrue(isEqualsLists);
+    }
+
+    public static void assertEmptyList(List list){
+        boolean isEmpty = false;
+
+        if (list.size() == 0){
+            isEmpty = true;
+        }
+
+        Assert.assertTrue(isEmpty);
     }
 }
