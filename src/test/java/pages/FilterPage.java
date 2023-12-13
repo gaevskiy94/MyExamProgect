@@ -14,21 +14,29 @@ public class FilterPage extends BasePage{
     String cleanFilterButtonXpath = "//div[@class='dtc clear-filters']";
 
     public void setPriceRange(String minPrice, String maxPrice){
-        WebElement minPriceField = getCurrentDriver().findElement(By.xpath(minPriceFieldXpath));
-        minPriceField.sendKeys(Keys.CONTROL + "a");
-        minPriceField.sendKeys(minPrice);
-        minPriceField.sendKeys(Keys.ENTER);
+        try {
+            WebElement minPriceField = getCurrentDriver().findElement(By.xpath(minPriceFieldXpath));
+            minPriceField.sendKeys(Keys.CONTROL + "a");
+            minPriceField.sendKeys(minPrice);
+            minPriceField.sendKeys(Keys.ENTER);
 
-        WebElement maxPriceField = getCurrentDriver().findElement(By.xpath(maxPriceFieldXpath));
-        maxPriceField.sendKeys(Keys.CONTROL + "a");
-        maxPriceField.sendKeys(maxPrice);
-        maxPriceField.sendKeys(Keys.ENTER);
+            WebElement maxPriceField = getCurrentDriver().findElement(By.xpath(maxPriceFieldXpath));
+            maxPriceField.sendKeys(Keys.CONTROL + "a");
+            maxPriceField.sendKeys(maxPrice);
+            maxPriceField.sendKeys(Keys.ENTER);
 
-        waitElementToBeClickable(By.xpath(cleanFilterButtonXpath));
+            waitElementToBeClickable(By.xpath(cleanFilterButtonXpath));
 
-        WebElement sliderMaxPrice = getCurrentDriver().findElement(By.xpath(sliderMaxPriceXpath));
-        sliderMaxPrice.click();
+            WebElement sliderMaxPrice = getCurrentDriver().findElement(By.xpath(sliderMaxPriceXpath));
+            sliderMaxPrice.click();
 
-        waitElementToBeClickable(By.xpath(cleanFilterButtonXpath));
+            waitElementToBeClickable(By.xpath(cleanFilterButtonXpath));
+
+        }catch (Exception e){
+            WebElement sliderMaxPrice = getCurrentDriver().findElement(By.xpath(sliderMaxPriceXpath));
+            sliderMaxPrice.click();
+
+            waitElementToBeClickable(By.xpath(cleanFilterButtonXpath));
+        }
     }
 }

@@ -13,7 +13,7 @@ import static utils.DriverProvider.getCurrentDriver;
 public class AssertionUtils {
 
     public static void assertContains(String inText, String words){
-        Reporter.log("Contains the:"+inText+" this: "+words+".");
+        Reporter.log("Contains the: '"+inText+"' this: '"+words+"'");
         Assert.assertTrue(inText.toLowerCase().contains(words.toLowerCase()));
     }
 
