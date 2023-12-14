@@ -21,7 +21,7 @@ public class ProductAddInFavoritesListAndDeleteFromListTest extends BaseTest {
         ProductsListPage productsListPage = new ProductsListPage();
         FavoritesPage favoritesPage = new FavoritesPage();
 
-        homePage.authorizationPage();
+        homePage.openAuthorizationPage();
 
         authorizationPage.login(user.getEmail(), user.getPassword());
 

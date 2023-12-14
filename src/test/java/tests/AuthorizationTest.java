@@ -15,7 +15,7 @@ public class AuthorizationTest extends BaseTest{
         HomePage homePage = new HomePage();
         AuthorizationPage authorizationPage = new AuthorizationPage();
 
-        homePage.authorizationPage();
+        homePage.openAuthorizationPage();
 
         authorizationPage.login(user.getEmail(), user.getPassword());
 

@@ -15,7 +15,7 @@ public class BasePage {
     String searchFieldId = "searchInput";
     String searchButtonXpath = "//button[@class='c-search__submit']";
 
-    public void authorizationPage(){
+    public void openAuthorizationPage(){
         openUserProfileDDMenu();
 
         WebElement loginLink = getCurrentDriver().findElement(By.xpath(loginLinkXpath));
